@@ -106,8 +106,9 @@ int main()
     	  ground_truth.push_back(gt_values);
           
           //Call ProcessMeasurment(meas_package) for Kalman filter
+          //cout << "before processMeas";
     	  fusionEKF.ProcessMeasurement(meas_package);    	  
-
+	      //cout <<"after processMeas";
     	  //Push the current estimated x,y positon from the Kalman filter's state vector
 
     	  VectorXd estimate(4);
@@ -123,8 +124,9 @@ int main()
     	  estimate(3) = v2;
     	  
     	  estimations.push_back(estimate);
-
+		  //cout << "before rmse";
     	  VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
+          //cout <<"after rmse";
 
           json msgJson;
           msgJson["estimate_x"] = p_x;
